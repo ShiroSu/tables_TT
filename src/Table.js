@@ -1,31 +1,41 @@
-import { useState } from 'react';
 import { getData } from './data';
 import Group from './Group';
 
+const countElements = section=> {
+    let quantity = 0
+    section.map(item=> {
+        quantity++
+        if (typeof item == "number") {
+            quantity++
+            console.log("Number!", quantity)
+        }
+        else if (typeof item == "object")
+            quantity += countElements(Object.values(item))
+    })
+            console.log("Number!", quantity)
+            return quantity
+}
+
 export default ()=> {
+    let padding = 10
     let data = getData()
     let inner = (<tbody>
         {
             Object.keys(data).map(sectionName=> {
-                return (<tr>
-                    <td>{sectionName}</td>
+                return (<>
+                    <td rowSpan={countElements(Object.values(data[sectionName]))}>{sectionName}</td>
                     {
                         Object.keys(data[sectionName]).map(groupName=> {
                             const group = data[sectionName][groupName]
-                            // const [groupPrice, setGroupPrice] = useState(0)
-                            
                             return (
-                                <Group groupName={groupName} group={group} /> //groupPrice={groupPrice} setGroupPrice={setGroupPrice} />
+                                <Group groupName={groupName} group={group} padding={padding} />
                             )
                         })
                     }
-                </tr>)
+                </>)
             })
         }
     </tbody>)
-    console.log(inner)
-
-    // Object.keys(data).map
     
     return (
         // <tbody>

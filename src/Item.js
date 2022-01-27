@@ -1,49 +1,20 @@
-import { useState } from "react"
+import { faCircle } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon as Icon } from "@fortawesome/react-fontawesome"
+import Group from "./Group"
 
 export default props=> {
-    let {name, value, groupPrice, setGroupPrice} = props
-    let anythingElse = (<></>), numPrice = 0, price
+    let {name, value, padding} = props
+    let price = 0, newPadding = padding+15
 
-    if (typeof value == "string") {
-        if (+value) numPrice = value
-        price = value
-    }
-    else if (typeof value == "object") {
-        // const [subgroupPrice, setSubgroupPrice] = useState(0)
-        let subgroupPrice = 0
-        
-        Object.keys(value).map(subgroupItemName=> {
-            const subgroupItem = value[subgroupItemName]
-            if (+subgroupItem) subgroupPrice += +subgroupItem
-        })
-        // setGroupPrice(+subgroupPrice+groupPrice)
-        price = (+subgroupPrice)? subgroupPrice : "-"
-        // setSubgroupPrice(localSubPrice)
-        anythingElse = (
+    if (typeof value == "number") {
+        return (
             <tr>
-            {
-                Object.keys(value).map(subgroupItemName=> {
-                    return (
-                            <tr>
-                            <td>{subgroupItemName}</td>
-                            <td>{value[subgroupItemName]}</td>
-                            </tr>
-                    )
-                })
-            }
+                <td style={{paddingLeft: newPadding+"px"}}><span style={{marginRight: "5px"}}><Icon icon={faCircle} size="xs" /></span>{name}</td>
+                <td>{(value)? value : "-"}</td>
             </tr>
         )
     }
-    numPrice += groupPrice
-    setGroupPrice(numPrice)
-    
-    return (
-        <tr>
-            <tr>
-                <td>{name}</td>
-                <td>{price}</td>
-            </tr>
-            <tr>{anythingElse}</tr>
-        </tr>
-    )
+    else if (typeof value == "object") {
+        return <Group groupName={name} group={value} padding={newPadding} />
+    }
 }

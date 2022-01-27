@@ -5,10 +5,10 @@ table {
 thead tr, thead td {
   background-color: rgb(40, 79, 157);
   color: whitesmoke;
-  border: none;
 }
 td {
+  border: 1px solid black;
   margin: 0;
   padding: 5px 10px;
-  min-width: 50px;
+  min-width: 80px;
 }

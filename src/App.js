@@ -1,20 +1,20 @@
+import { Table } from 'react-bootstrap';
+import MyTable from './Table';
+import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
-import Table from './Table';
 
 function App() {
   return (
     <div className="App">
-      <table border="1">
+      <table width="80%">
         <thead>
           <tr>
             <td>Section</td>
-            <tr>
-              <td>Groups</td>
-              <td colSpan={3}>Price</td>
-            </tr>
+            <td>Groups</td>
+            <td>Price</td>
           </tr>
         </thead>
-        <Table />
+        <MyTable />
       </table>
     </div>
   );
