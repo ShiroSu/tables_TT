@@ -1,4 +1,3 @@
-import { Table } from 'react-bootstrap';
 import MyTable from './Table';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';

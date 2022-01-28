@@ -4,7 +4,7 @@ import Group from "./Group"
 
 export default props=> {
     let {name, value, padding} = props
-    let price = 0, newPadding = padding+15
+    let newPadding = padding+15
 
     if (typeof value == "number") {
         return (

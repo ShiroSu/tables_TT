@@ -5,14 +5,10 @@ const countElements = section=> {
     let quantity = 0
     section.map(item=> {
         quantity++
-        if (typeof item == "number") {
-            quantity++
-            console.log("Number!", quantity)
-        }
+        if (typeof item == "number") quantity++
         else if (typeof item == "object")
             quantity += countElements(Object.values(item))
     })
-            console.log("Number!", quantity)
             return quantity
 }
 
@@ -37,9 +33,5 @@ export default ()=> {
         }
     </tbody>)
     
-    return (
-        // <tbody>
-                inner
-        // </tbody>
-    )
+    return inner
 }
